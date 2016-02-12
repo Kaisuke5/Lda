@@ -3,7 +3,7 @@ import numpy as np
 from numpy import ones,zeros
 import Vocabulary
 import MeCab
-
+import time
 import six
 
 
@@ -83,9 +83,8 @@ class lda():
 			tmp=L
 
 
-	def train2(self):
-		tmp=0
-		num_save = 10
+	def train2(self,num_save=20):
+		tmp = 0
 		pickle_name = "./data/model/wiki_lda_model_"
 		output_name = './data/output/word_cluster_num_'
 
@@ -94,18 +93,20 @@ class lda():
 			self.infer()
 			L=self.perplexity()
 
-			if i % num_save == 0:
+			if (i+1) % num_save == 0:
 				print "L(i-1)-L(i):",tmp-L," perplexity:",L
 
-				pname = pickle_name + str(i) + ".dump"
-				oname = output_name + str(i) + ".txt"
+				pname = pickle_name + str(i+1) + ".dump"
+				oname = output_name + str(i+1) + ".txt"
 
 
 				with open(pname, 'wb') as f:
-					six.moves.cPickle.dump(l, f, -1)
+					six.moves.cPickle.dump(self, f, -1)
 					print 'Done %s' % pname
 
 				self.word_clustering(filename=oname)
+				time.sleep(10)
+
 
 			tmp=L
 

@@ -1,0 +1,10 @@
+L(i-1)-L(i): -0.582791589653  perplexity: 677.728746057
+Done ./data/model/wiki_lda_model_20.dump
+L(i-1)-L(i): -0.10288492785  perplexity: 674.395099719
+Done ./data/model/wiki_lda_model_40.dump
+L(i-1)-L(i): 1.74638507905  perplexity: 677.421276322
+Done ./data/model/wiki_lda_model_60.dump
+L(i-1)-L(i): -1.0561918841  perplexity: 674.135024084
+Done ./data/model/wiki_lda_model_80.dump
+L(i-1)-L(i): -4.19394028173  perplexity: 683.263016618
+Done ./data/model/wiki_lda_model_100.dump

@@ -8,7 +8,7 @@ import MeCab
 
 v = Vocabulary.Vocabulary(language="ja")
 dd=v.make_corpus("anpo.txt")
-l = lda(0.5,0.5,10,2,dd,len(v.words),v)
+l = lda(0.5,0.5,100,2,dd,len(v.words),v)
 
-l.train()
-print l.word_clustering()
+l.train2()
+
