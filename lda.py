@@ -2,6 +2,10 @@
 import numpy as np
 from numpy import ones,zeros
 import Vocabulary
+import MeCab
+
+import six
+
 
 class lda():
 
@@ -35,11 +39,12 @@ class lda():
 				self.n_z_w[z,word]+=1
 				self.n_z[z]+=1
 
-
+	def reinit(self):
+		self.voc.mecab = MeCab.Tagger("-Ochasen -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/")
 
 
 	def infer(self):
-		for m,doc in enumerate(docs):
+		for m,doc in enumerate(self.docs):
 			z_n=self.topic[m] #in dm: [cat1 cat3 ...] (N)
 			n_m_z=self.n_d_z[m] #[3 2 5...] (K)
 
@@ -78,22 +83,59 @@ class lda():
 			tmp=L
 
 
+	def train2(self):
+		tmp=0
+		num_save = 10
+		pickle_name = "./data/model/wiki_lda_model_"
+		output_name = './data/output/word_cluster_num_'
+
+		for i in range(self.iteraion):
+
+			self.infer()
+			L=self.perplexity()
+
+			if i % num_save == 0:
+				print "L(i-1)-L(i):",tmp-L," perplexity:",L
+
+				pname = pickle_name + str(i) + ".dump"
+				oname = output_name + str(i) + ".txt"
+
+
+				with open(pname, 'wb') as f:
+					six.moves.cPickle.dump(l, f, -1)
+					print 'Done %s' % pname
+
+				self.word_clustering(filename=oname)
+
+			tmp=L
+
+
+
+
+
+
 	# to write ouput class to file
-	def word_clustering(self):
-		f=open("output","w")
+	def word_clustering(self,num=30,filename='output.txt'):
+		f=open(filename,"w")
+		data = []
+
 		for k in range(self.K):
 			pw_k=self.n_z_w[k]/self.n_z[k]
 			index=np.argsort(pw_k)
 			
 			f.write("cluster:"+str(k)+"\n")
-			for i,idx in enumerate(index[-30:]):
-				line=str(v.words[idx])+" "+str(self.n_z_w[k][idx]/self.n_z[k])+"\n"
+
+			for i,idx in enumerate(index[-num:]):
+
+				line=str(self.voc.words[idx])+" "+str(self.n_z_w[k][idx]/self.n_z[k])+"\n"
+				data.append(line)
 				f.write(line)
 			f.write("\n")
 		f.close()
+		return data
 
 
-	def doc_clustering(self,docs):
+	def doc_clustering(self,docs,fileoption=True):
 		f=open("output2","w")
 		for i,doc in enumerate(docs):
 			p=[0 for j in range(self.K)]
@@ -102,12 +144,27 @@ class lda():
 					p[k]+=np.log(self.n_z_w[k][d])
 
 			max_class=p.index(max(p))
-			f.write("document "+str(i)+":"+str(max_class)+"\n")
-		
+			if fileoption: f.write("document "+str(i)+":"+str(max_class)+"\n")
+			else: print
 
 		f.close()
 
 
+	def clustering(self,sentence):
+		doc = []
+		max_size = len(self.voc.words)
+		doc = self.voc.doc_to_ids(sentence,add_option=False)
+		doc = filter(lambda x:x<max_size,doc)
+
+
+
+		p=[0 for j in range(self.K)]
+		for k in range(self.K):
+			for d in doc:
+				p[k]+=np.log(self.n_z_w[k][d])
+
+		max_class=p.index(max(p))
+		return "class:",max_class
 
 	def wordlist(self):
 		return self.n_z_w/self.n_z[:,np.newaxis]
@@ -142,13 +199,21 @@ if __name__=="__main__":
 
 
 	v=Vocabulary.Vocabulary(language=op.language)
-	docs=v.make_corpus(op.filename)
+	dd=v.make_corpus(op.filename)
 	
-	l=lda(op.alpha,op.beta,op.iteraion,op.k,docs,len(v.words),v)
-	l.train()
+	l=lda(op.alpha,op.beta,op.iteraion,op.k,dd,len(v.words),v)
+	l.train2()
 	l.word_clustering()
-	l.doc_clustering(docs)
-	
+	l.doc_clustering(dd)
+	print l.clustering("かいくん麻薬")
+	print l.clustering("かいくん安保反対")
+	fname = "lda_model.dump"
+	with open(fname, 'wb') as output:
+		six.moves.cPickle.dump(l, output, -1)
+		print 'Done %s' % fname
+
+
+
 
 	
 	

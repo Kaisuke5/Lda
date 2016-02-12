@@ -45,12 +45,27 @@ class Vocabulary():
 
 		if language=="ja": self.language=1
 		
+	def __getstate__(self):
+		odict = self.__dict__.copy()
+		del odict['mecab'] # pickle 時に保存しないよう、消してしまう
+		return odict
 
-	def word_to_id(self,word):
+	def __setstate__(self, odict):
+		self.__dict__.update(odict)
+		self.mecab = MeCab.Tagger("-Ochasen -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/")
+
+
+
+
+	def word_to_id(self,word,add_option=True):
 		if word in stopwords[self.language]: return None
 		if self.language==0 and not re.match(r'[a-z]+$', word): return None
 		if re.match(r'[1-9]',word): return None
+
+
+
 		if word not in self.words:
+			if not add_option: return None
 			self.word_id[word]=len(self.words)
 			self.words.append(word)
 			self.docfreq.append(1)
@@ -62,7 +77,7 @@ class Vocabulary():
 	
 
 
-	def doc_to_ids(self,doc):
+	def doc_to_ids(self,doc,add_option=True):
 		list=[]
 		
 		if self.language==1: doc=self.mecabdoc(doc)
@@ -70,7 +85,7 @@ class Vocabulary():
 		
 		for word in doc:
 			
-			id=self.word_to_id(word)
+			id=self.word_to_id(word,add_option=add_option)
 
 			if id !=None:
 				list.append(id)
