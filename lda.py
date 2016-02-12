@@ -105,7 +105,7 @@ class lda():
 					print 'Done %s' % pname
 
 				self.word_clustering(filename=oname)
-				time.sleep(10)
+				
 
 
 			tmp=L
