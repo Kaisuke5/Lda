@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Lda.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Lda.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7631579">
-              <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
+            <state vertical-scroll-proportion="-12.222222">
+              <caret line="213" column="31" selection-start-line="211" selection-start-column="4" selection-end-line="213" selection-end-column="31" />
               <folding>
                 <element signature="e#14#32#0" expanded="true" />
               </folding>
@@ -38,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/Wiki_Lda.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <caret line="9" column="28" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="28" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -46,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vocabulary.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Vocabulary.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Vocabulary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.8241206">
+              <caret line="178" column="48" selection-start-line="178" selection-start-column="48" selection-end-line="178" selection-end-column="48" />
               <folding>
                 <element signature="e#14#23#0" expanded="true" />
               </folding>
@@ -64,9 +64,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lda.py" />
-        <option value="$PROJECT_DIR$/Vocabulary.py" />
         <option value="$PROJECT_DIR$/Wiki_Lda.py" />
         <option value="$PROJECT_DIR$/Lda.py" />
+        <option value="$PROJECT_DIR$/Vocabulary.py" />
       </list>
     </option>
   </component>
@@ -178,7 +178,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/Vocabulary.py</url>
-          <line>61</line>
+          <line>89</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
@@ -190,29 +190,29 @@
     <entry file="file://$PROJECT_DIR$/Wiki_Lda.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="28" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Vocabulary.py">
+    <entry file="file://$PROJECT_DIR$/Lda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        <state vertical-scroll-proportion="-12.222222">
+          <caret line="213" column="31" selection-start-line="211" selection-start-column="4" selection-end-line="213" selection-end-column="31" />
           <folding>
-            <element signature="e#14#23#0" expanded="true" />
+            <element signature="e#14#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lda.py">
+    <entry file="file://$PROJECT_DIR$/Vocabulary.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7631579">
-          <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.8241206">
+          <caret line="178" column="48" selection-start-line="178" selection-start-column="48" selection-end-line="178" selection-end-column="48" />
           <folding>
-            <element signature="e#14#32#0" expanded="true" />
+            <element signature="e#14#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
