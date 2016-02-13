@@ -87,7 +87,7 @@ class Vocabulary():
 
 	def word_to_id(self,word,add_option=True):
 		if word in stopwords[self.language]: return None
-		if self.language==0 and not re.match(r'[a-z]+$', word): return None
+		#if self.language==0 and not re.match(r'[a-z]+$', word): return None
 		if re.match(r'[1-9]',word): return None
 
 
@@ -137,7 +137,7 @@ class Vocabulary():
 		for line in tqdm(open(filename,"r")):
 
 			doc=self.doc_to_ids(line)
-			if len(doc)!=0: docs.append(doc)
+			if len(doc)> 10: docs.append(doc)
 		return docs
 			
 
@@ -162,13 +162,15 @@ class Vocabulary():
 
 
 if __name__=="__main__":
-	# WIKI_DATA_PATH = '/home/ec2-user/lda_project/text/result.txt'
+	WIKI_DATA_PATH = '/home/ec2-user/lda_project/text/result.txt'
+	WIKI_DATA_PATH = 'data/test_corpus2.txt'
 	# VOC_PICKLE = 'wiki_vocaburary.dump'
 	#
 	#
-	# WIKI_DATA_PATH = "anpo.txt"
-	# v=Vocabulary(language="ja")
-	# docs=v.make_corpus(WIKI_DATA_PATH)
+	#WIKI_DATA_PATH = "anpo.txt"
+	v=Vocabulary(language="en")
+	docs=v.make_corpus(WIKI_DATA_PATH)
+	print pp(docs)
 	#
 	# with open(VOC_PICKLE, 'wb') as output:
 	# 	six.moves.cPickle.dump([docs, v], output, -1)
@@ -176,4 +178,4 @@ if __name__=="__main__":
 	#
 	#
 	# print docs[0]
-	make_japanese_text("~/lda_project/result.txt",'wiki_japanese_corpus.txt')
+	#make_japanese_text("~/lda_project/result.txt",'wiki_japanese_corpus.txt')
